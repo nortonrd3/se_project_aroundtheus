@@ -3,3 +3,19 @@
   min-height: 74px;
   border-bottom: 1px solid #545454;
 }
+
+@media screen and (max-width:780px) {
+
+  .header.header.page__section {
+    margin-top: 36px;
+  }
+
+}
+
+@media screen and (max-width:450px) {
+
+  .header.header.page__section {
+    margin-top: 28px;
+  }
+
+}
