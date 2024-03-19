@@ -1,21 +1,32 @@
 .header {
   margin-top: 45px;
-  min-height: 74px;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.6);
+}
+
+.header__image {
+  margin-left: 27px;
+  margin-bottom: 32px;
 }
 
 @media screen and (max-width:780px) {
 
-  .header.header.page__section {
+  .header {
     margin-top: 36px;
+    height: 56px;
   }
 
 }
 
 @media screen and (max-width:450px) {
 
-  .header.header.page__section {
+  .header {
     margin-top: 28px;
+    width: 100%;
+  }
+
+  .header__image {
+    width: 126px;
+    height: 24px;
   }
 
 }

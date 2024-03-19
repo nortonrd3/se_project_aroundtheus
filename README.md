@@ -17,3 +17,8 @@ The website is responsive and transitions are smooth between screen sizes. The n
 ## Check it out!   
   
 https://nortonrd3.github.io/se_project_aroundtheus/
+
+## Check out a video overview here!
+
+https://drive.google.com/file/d/1rl-UHB3KmsPlotOYfA9NmtQyXzVr6RjH/view?usp=sharing
+
