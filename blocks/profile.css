@@ -61,7 +61,6 @@
 .profile__add-button:hover {
   cursor: pointer;
   opacity: 60%;
-
 }
 
 .profile__description {
@@ -73,7 +72,6 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 373px;
-
 }
 
 @media screen and (max-width:780px) {
@@ -114,7 +112,7 @@
 @media screen and (max-width:450px) {
 
   .profile {
-    padding-top: 0px;
+    padding-top: 14px;
   }
 
   .profile__info {
@@ -135,7 +133,6 @@
   }
 
   .profile__add-button {
-    margin-bottom: 0px;;
+    margin-bottom: 0px;
   }
-
 }
