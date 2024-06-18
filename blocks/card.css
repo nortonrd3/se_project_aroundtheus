@@ -49,3 +49,7 @@
   cursor: pointer;
   background: transparent url(../images/like_button-active.svg) center no-repeat;
 }
+
+.card__like-button:active {
+  color: #000;
+}
