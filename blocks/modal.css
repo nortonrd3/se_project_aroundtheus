@@ -55,7 +55,7 @@
   flex-direction: column;
 }
 
-.modal__form_input {
+.modal__input {
   font-size: 14px;
   line-height: 17px;
   min-height: 27px;
@@ -66,7 +66,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.modal__form_input::placeholder {
+.modal__input::placeholder {
   color: #000;
 }
 
@@ -91,7 +91,6 @@
     padding: 25px 22px 25px 22px;
   }
 
-
   .modal__close {
     left: 246px;
     top: -45px;
@@ -110,5 +109,3 @@
     line-height: 17px;
   }
 }
-
-
