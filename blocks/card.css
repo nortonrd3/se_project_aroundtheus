@@ -3,6 +3,7 @@
   flex-direction: column;
   max-width: 282px;
   list-style: none;
+  position: relative;
 }
 
 .card__image {
@@ -48,9 +49,25 @@
 
 .card__like-button:hover {
   cursor: pointer;
-  background: transparent url(../images/like_button-active.svg) center no-repeat;
+  opacity: 0.5;
 }
 
-.card__like-button:active {
-  color: #000;
+.card__like-button_active {
+  background-image: url(../images/like_button-active.svg);
+}
+
+.card__delete-button {
+  position: absolute;
+  background: transparent url(../images/trash.svg) center no-repeat;
+  border: none;
+  z-index: 999;
+  width: 18px;
+  height: 19px;
+  top: 18px;
+  right: 20px;
+}
+
+.card__delete-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
