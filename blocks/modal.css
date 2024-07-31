@@ -23,6 +23,23 @@
   min-width: 430px;
 }
 
+.modal__container_preview {
+  position: relative;
+  margin: 90px auto 68px auto;
+  padding: 0;
+}
+
+.modal__card-image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.modal__card-title {
+  font-size: 12px;
+  line-height: 14.5px;
+  margin: 10px 0 0 0;
+}
+
 .modal__close {
   background-image: url(../images/close.svg);
   border: none;
@@ -91,9 +108,13 @@
     padding: 25px 22px 25px 22px;
   }
 
+  .modal__container_preview {
+    min-width: 238px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .modal__close {
-    left: 246px;
-    top: -45px;
     width: 26px;
     height: 26px;
   }
