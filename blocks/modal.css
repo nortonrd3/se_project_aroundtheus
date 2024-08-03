@@ -32,9 +32,10 @@
   padding: 36px;
   border-radius: 10px;
   min-width: 430px;
+  box-sizing: border-box;
 }
 
-.modal__container_preview {
+.modal__container-preview {
   position: relative;
   margin: 90px auto 68px auto;
   padding: 0;
@@ -95,7 +96,7 @@
 }
 
 .modal__input::placeholder {
-  color: #000;
+  color: #c4c4c4;
 }
 
 .modal__button {
@@ -114,9 +115,14 @@
 }
 
 @media screen and (max-width: 640px) {
+  .modal {
+    padding: 0 16px 0 22px;
+  }
+
   .modal__container {
-    min-width: 238px;
+    min-width: 282px;
     padding: 25px 22px 25px 22px;
+    margin: auto;
   }
 
   .modal__container_preview {
@@ -128,6 +134,8 @@
   .modal__close {
     width: 26px;
     height: 26px;
+    bottom: calc(100% + 26px);
+    left: calc(100% - 38px);
   }
 
   .modal__heading {
