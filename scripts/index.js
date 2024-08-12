@@ -58,11 +58,30 @@ const cardTitleInput = addCardFormElement.querySelector(
 );
 const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 
+function handleEscKey(e) {
+  if (e.key === "Escape") {
+    const openedModal = document.querySelectorAll(".modal_opened");
+    openedModal.forEach((modal) => {
+      closeModal(modal);
+    });
+  }
+}
+
+function handleClickOutside(e) {
+  if (e.target.classList.contains("modal_opened")) {
+    closeModal(e.target);
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscKey);
+  modal.addEventListener("click", handleClickOutside);
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
+  modal.removeEventListener("click", handleClickOutside);
 }
 
 function renderCard(cardData, wrapper) {
