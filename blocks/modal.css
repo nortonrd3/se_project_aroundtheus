@@ -99,6 +99,11 @@
   color: #c4c4c4;
 }
 
+.modal__error {
+  color: red;
+  font-size: 14px;
+}
+
 .modal__button {
   color: #fff;
   background-color: #000;
@@ -112,6 +117,10 @@
 
 .modal__button:hover {
   opacity: 80%;
+}
+
+.modal__button_disabled {
+  background-color: gray;
 }
 
 @media screen and (max-width: 640px) {
