@@ -60,8 +60,8 @@ const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 
 function handleEscKey(e) {
   if (e.key === "Escape") {
-    const openedModal = document.querySelectorAll(".modal_opened");
-    openedModal.forEach((modal) => {
+    const openedModals = document.querySelectorAll(".modal_opened");
+    openedModals.forEach((modal) => {
       closeModal(modal);
     });
   }
