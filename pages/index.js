@@ -39,7 +39,6 @@ const initialCards = [
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardFormElement = addCardModal.querySelector(".modal__form");
 const profileCloseModalButton = profileEditModal.querySelector(
   "#profile-close-button"
 );
@@ -64,10 +63,8 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardListElements = document.querySelector(".cards__list");
 const addNewCardButton = document.querySelector(".profile__add-button");
-const cardTitleInput = addCardFormElement.querySelector(
-  ".modal__input_type_title"
-);
-const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
+const cardTitleInput = addCardForm.querySelector(".modal__input_type_title");
+const cardUrlInput = addCardForm.querySelector(".modal__input_type_url");
 
 function handleEscKey(e) {
   if (e.key === "Escape") {
@@ -119,6 +116,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
+  resetValidation();
 });
 profileCloseModalButton.addEventListener("click", () =>
   closeModal(profileEditModal)
@@ -148,7 +146,6 @@ editProfileFormValidator.enableValidation();
 
 // Cards
 initialCards.forEach((cardData) => {
-  getCardElement(cardData);
   renderCard(cardData, cardListElements);
 });
 
