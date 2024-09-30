@@ -4,20 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the U.S.</title>
-    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
           class="header__image"
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around the U.S. logo"
         />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img class="profile__image" src="./images/avatar.png" alt="Avatar" />
+          <img
+            class="profile__image"
+            src="<%=require('./images/avatar.png')%>"
+            alt="Avatar"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -143,6 +146,5 @@
         </div>
       </div>
     </template>
-    <script src="./pages/index.js" type="module"></script>
   </body>
 </html>

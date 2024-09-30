@@ -6,6 +6,7 @@ import Section from "../components/Section.js";
 import { initialCards } from "../utils/utils.js";
 import { formValidationConfig } from "../utils/utils.js";
 import UserInfo from "../components/UserInfo.js";
+import "./index.css";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
