@@ -1,8 +1,8 @@
 export default class Section {
-  constructor({ items , renderer }, containerSelector) {
+  constructor({ items, renderer }, containerSelector) {
     this._items = items;
     this._renderer = renderer;
-    this._containerSelector = document.querySelector(containerSelector);
+    this._container = document.querySelector(containerSelector);
   }
 
   renderItems() {
@@ -14,6 +14,6 @@ export default class Section {
 
   addItem(cardElement) {
     // takes a DOM element and adds it to the container. Should be called when adding an individual card to the DOM.
-    this._containerSelector.prepend(cardElement);
+    this._container.prepend(cardElement);
   }
 }

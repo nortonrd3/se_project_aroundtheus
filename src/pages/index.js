@@ -18,8 +18,6 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector(".modal__form");
 const addNewCardButton = document.querySelector(".profile__add-button");
-const cardTitleInput = addCardForm.querySelector(".modal__input_type_title");
-const cardUrlInput = addCardForm.querySelector(".modal__input_type_url");
 
 function handleImageClick(name, link) {
   previewImagePopup.open(name, link);
@@ -31,9 +29,9 @@ function handleProfileEditSubmit(data) {
 }
 
 function handleAddCardSubmit() {
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ name, link });
+  const cardData = newCardPopup._getInputValues();
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
   newCardPopup.close();
 }
 
@@ -60,9 +58,13 @@ const editProfileFormValidator = new FormValidator(
 editProfileFormValidator.enableValidation();
 
 // Cards
-const renderCard = (cardData) => {
+function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
-  const cardElement = card.getView();
+  return card.getView();
+}
+
+const renderCard = (cardData) => {
+  const cardElement = createCard(cardData);
   section.addItem(cardElement);
 };
 
@@ -90,7 +92,6 @@ editProfilePopup.setEventListeners();
 
 const previewImagePopup = new PopupWithImage({
   popupSelector: "#preview-image-modal",
-  data: initialCards,
 });
 previewImagePopup.setEventListeners();
 
