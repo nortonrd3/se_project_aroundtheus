@@ -28,10 +28,8 @@ function handleProfileEditSubmit(data) {
   editProfilePopup.close();
 }
 
-function handleAddCardSubmit() {
-  const cardData = newCardPopup._getInputValues();
-  const cardElement = createCard(cardData);
-  section.addItem(cardElement);
+function handleAddCardSubmit(cardData) {
+  renderCard(cardData);
   newCardPopup.close();
 }
 
