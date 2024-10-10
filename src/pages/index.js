@@ -6,6 +6,7 @@ import Section from "../components/Section.js";
 import { initialCards } from "../utils/utils.js";
 import { formValidationConfig } from "../utils/utils.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import "./index.css";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -41,6 +42,29 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addNewCardButton.addEventListener("click", () => newCardPopup.open());
+
+// API
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "6f07cb37-e9a8-4f19-ad7e-e33ed7b58580",
+    "Content-Type": "application/json",
+  },
+});
+
+fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  method: "POST",
+  headers: {
+    authorization: "6f07cb37-e9a8-4f19-ad7e-e33ed7b58580",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  }),
+});
+
+api.getAllData();
 
 // Form Validation
 const addCardFormValidator = new FormValidator(
