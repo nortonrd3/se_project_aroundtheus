@@ -16,11 +16,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__image"
-            src="<%=require('./images/avatar.png')%>"
-            alt="Avatar"
-          />
+          <div class="profile__container-avatar">
+            <img
+              class="profile__avatar-button"
+              src="<%=require('./images/edit-avatar.svg')%>"
+              alt="Edit Avatar"
+            />
+            <img class="profile__avatar-button" src="" alt="Avatar" />
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -44,6 +47,35 @@
           <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
         </footer>
       </main>
+    </div>
+    <!-- Edit Profile Picture Modal-->
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__container modal__container_avatar">
+        <button class="modal__close" id="avatar-close-button"></button>
+        <p class="modal__heading modal__heading_avatar">
+          Change profile picture
+        </p>
+        <form class="modal__form modal__form_avatar" id="edit-avatar-modal">
+          <label class="modal__input-container">
+            <input
+              type="url"
+              name="avatar"
+              id="edit-avatar-input"
+              class="modal__input modal__input_avatar"
+              placeholder="Image Url"
+              required
+            />
+            <span class="modal__error" id="edit-avatar-input-error"></span>
+          </label>
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
+        </form>
+      </div>
     </div>
     <!-- Edit Profile Modal -->
     <div class="modal" id="profile-edit-modal">
