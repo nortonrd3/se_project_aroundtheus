@@ -3,7 +3,6 @@ import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
-import { initialCards } from "../utils/utils.js";
 import { formValidationConfig } from "../utils/utils.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
@@ -12,6 +11,8 @@ import "./index.css";
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
+const changeAvitarModal = document.querySelector("#edit-avatar-modal");
+
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -19,6 +20,7 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector(".modal__form");
 const addNewCardButton = document.querySelector(".profile__add-button");
+const avatarFormElement = changeAvitarModal.querySelector(".modal__form");
 
 function handleImageClick(name, link) {
   previewImagePopup.open(name, link);
@@ -43,6 +45,12 @@ profileEditButton.addEventListener("click", () => {
 
 addNewCardButton.addEventListener("click", () => newCardPopup.open());
 
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+  avatarSelector: ".profile__image",
+});
+
 // API
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -52,19 +60,22 @@ const api = new Api({
   },
 });
 
-fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-  method: "POST",
-  headers: {
-    authorization: "6f07cb37-e9a8-4f19-ad7e-e33ed7b58580",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  }),
-});
+let section;
 
-api.getAllData();
+api.getAllData()
+  .then(([initialCards, userData]) => {
+    userInfo.updateAvatar(userData.avatar);
+    userInfo.setUserInfo({
+      title: userData.name,
+      description: userData.about,
+    });
+    section = new Section({
+      items: initialCards,
+      renderer: renderCard,
+    }, ".cards__list");
+    section.renderItems();
+  })
+  .catch((err) => console.error(err));
 
 // Form Validation
 const addCardFormValidator = new FormValidator(
@@ -79,6 +90,12 @@ const editProfileFormValidator = new FormValidator(
 );
 editProfileFormValidator.enableValidation();
 
+const avatarFormValidator = new FormValidator(
+  formValidationConfig,
+  avatarFormElement
+);
+avatarFormValidator.enableValidation();
+
 // Cards
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
@@ -92,11 +109,11 @@ const renderCard = (cardData) => {
 
 // Instace of Section class
 
-const section = new Section(
-  { items: initialCards, renderer: renderCard },
-  ".cards__list"
-);
-section.renderItems();
+// const section = new Section(
+//   { items: initialCards, renderer: renderCard },
+//   ".cards__list"
+// );
+// section.renderItems();
 
 // Popups
 
@@ -117,7 +134,4 @@ const previewImagePopup = new PopupWithImage({
 });
 previewImagePopup.setEventListeners();
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-});
+
