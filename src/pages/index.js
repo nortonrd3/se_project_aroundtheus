@@ -62,17 +62,21 @@ const api = new Api({
 
 let section;
 
-api.getAllData()
+api
+  .getAllData()
   .then(([initialCards, userData]) => {
     userInfo.updateAvatar(userData.avatar);
     userInfo.setUserInfo({
       title: userData.name,
       description: userData.about,
     });
-    section = new Section({
-      items: initialCards,
-      renderer: renderCard,
-    }, ".cards__list");
+    section = new Section(
+      {
+        items: initialCards,
+        renderer: renderCard,
+      },
+      ".cards__list"
+    );
     section.renderItems();
   })
   .catch((err) => console.error(err));
@@ -98,7 +102,12 @@ avatarFormValidator.enableValidation();
 
 // Cards
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleLikeIcon
+  );
   return card.getView();
 }
 
@@ -106,6 +115,34 @@ const renderCard = (cardData) => {
   const cardElement = createCard(cardData);
   section.addItem(cardElement);
 };
+
+// handle Like Icon
+function handleLikeIcon(card) {
+  if (card.getIsLiked()) {
+    api
+      .removeLike(card.getCardId())
+      .then(() => {
+        card.handleLike(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .addLike(card.getCardId())
+      .then(() => {
+        card.handleLike(true);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+}
+
+// handle deleting cards
+function handleDeleteCard(card) {
+
+}
 
 // Instace of Section class
 
@@ -133,5 +170,3 @@ const previewImagePopup = new PopupWithImage({
   popupSelector: "#preview-image-modal",
 });
 previewImagePopup.setEventListeners();
-
-
