@@ -61,7 +61,7 @@ export default class Card {
     return this._isLiked;
   }
 
-  handleDeleteCard() {
+  remove() {
     this._cardElement.remove();
     this._cardElement = null;
   }

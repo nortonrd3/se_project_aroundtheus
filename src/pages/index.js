@@ -32,16 +32,13 @@ function handleProfileEditSubmit(userData) {
     .updateUserInfo(userData)
     .then((res) => {
       userInfo.setUserInfo({
-        name: res.name,
+        title: res.name,
         description: res.about,
       });
       editProfilePopup.close();
     })
     .catch((err) => {
       console.error(err);
-    })
-    .finally(() => {
-      window.location.reload();
     });
 }
 
@@ -176,8 +173,8 @@ function handleDeleteCard(card) {
     api
       .deleteCard(card.getCardId())
       .then(() => {
-        window.location.reload();
-        card.handleDeleteCard();
+        // window.location.reload();
+        card.remove();
         confirmDeletionPopup.close();
       })
       .catch((err) => {
