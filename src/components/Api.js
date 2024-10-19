@@ -60,7 +60,7 @@ export default class Api {
     }).then(this._handlePromise);
   }
 
-  addCard({ name, link, _id }) {
+  addCard({ name, link, _id, }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,

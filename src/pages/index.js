@@ -2,6 +2,7 @@ import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupConfirmDeletion from "../components/PopupConfirmDeletion.js";
 import Section from "../components/Section.js";
 import { formValidationConfig } from "../utils/utils.js";
 import UserInfo from "../components/UserInfo.js";
@@ -26,14 +27,42 @@ function handleImageClick(name, link) {
   previewImagePopup.open(name, link);
 }
 
-function handleProfileEditSubmit(data) {
-  userInfo.setUserInfo(data);
-  editProfilePopup.close();
+function handleProfileEditSubmit(userData) {
+  api
+    .updateUserInfo(userData)
+    .then((res) => {
+      userInfo.setUserInfo({
+        name: res.name,
+        description: res.about,
+      });
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      window.location.reload();
+    });
 }
 
-function handleAddCardSubmit(cardData) {
-  renderCard(cardData);
-  newCardPopup.close();
+function handleAddCardSubmit(data) {
+  console.log(data);
+  api
+    .addCard({
+      name: data.name,
+      link: data.link,
+      _id: data.id,
+      isLiked: data.isLiked,
+    })
+    .then((cardData) => {
+      renderCard(cardData);
+      newCardPopup.close();
+      addCardForm.reset();
+      addCardFormValidator._disableButton();
+    })
+    .catch((error) => {
+      console.error("Error while adding card", error);
+    });
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -106,7 +135,8 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    handleLikeIcon
+    handleLikeIcon,
+    handleDeleteCard
   );
   return card.getView();
 }
@@ -141,7 +171,19 @@ function handleLikeIcon(card) {
 
 // handle deleting cards
 function handleDeleteCard(card) {
-
+  confirmDeletionPopup.open();
+  confirmDeletionPopup.confirmDeletion(() => {
+    api
+      .deleteCard(card.getCardId())
+      .then(() => {
+        window.location.reload();
+        card.handleDeleteCard();
+        confirmDeletionPopup.close();
+      })
+      .catch((err) => {
+        console.error("Error deleting card", err);
+      });
+  });
 }
 
 // Instace of Section class
@@ -170,3 +212,9 @@ const previewImagePopup = new PopupWithImage({
   popupSelector: "#preview-image-modal",
 });
 previewImagePopup.setEventListeners();
+
+const confirmDeletionPopup = new PopupConfirmDeletion({
+  popupSelector: "#remove-card-modal",
+  handleFormSubmit: () => {},
+});
+confirmDeletionPopup.setEventListeners();
