@@ -21,6 +21,7 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector(".modal__form");
 const addNewCardButton = document.querySelector(".profile__add-button");
+const editAvatarButton = document.querySelector(".profile__avatar-button");
 const avatarFormElement = changeAvitarModal.querySelector(".modal__form");
 
 function handleImageClick(name, link) {
@@ -28,6 +29,7 @@ function handleImageClick(name, link) {
 }
 
 function handleProfileEditSubmit(userData) {
+  editProfilePopup.renderLoadingText(true);
   api
     .updateUserInfo(userData)
     .then((res) => {
@@ -39,11 +41,33 @@ function handleProfileEditSubmit(userData) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoadingText(false);
+    });
+}
+
+function handleAvatarSubmit(link) {
+  editAvatarPopup.renderLoadingText(true);
+  api
+    .updateAvatar(link)
+    .then((res) => {
+      userInfo.updateAvatar(res.avatar);
+      editAvatarPopup.close();
+      avatarFormElement.reset();
+      avatarFormValidator._disableButton();
+    })
+    .catch((err) => {
+      console.error("Error updating avatar", err);
+    })
+    .finally(() => {
+      editAvatarPopup.renderLoadingText(false);
     });
 }
 
 function handleAddCardSubmit(data) {
-  console.log(data);
+  // console.log(data);
+  newCardPopup.renderLoadingText(true);
   api
     .addCard({
       name: data.name,
@@ -59,8 +83,13 @@ function handleAddCardSubmit(data) {
     })
     .catch((error) => {
       console.error("Error while adding card", error);
+    })
+    .finally(() => {
+      newCardPopup.renderLoadingText(false);
     });
 }
+
+editAvatarButton.addEventListener("click", () => editAvatarPopup.open());
 
 profileEditButton.addEventListener("click", () => {
   const data = userInfo.getUserInfo();
@@ -204,6 +233,12 @@ const editProfilePopup = new PopupWithForm({
   handleFormSubmit: handleProfileEditSubmit,
 });
 editProfilePopup.setEventListeners();
+
+const editAvatarPopup = new PopupWithForm({
+  popupSelector: "#edit-avatar-modal",
+  handleFormSubmit: handleAvatarSubmit,
+});
+editAvatarPopup.setEventListeners();
 
 const previewImagePopup = new PopupWithImage({
   popupSelector: "#preview-image-modal",
