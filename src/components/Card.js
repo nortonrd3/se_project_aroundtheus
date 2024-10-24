@@ -22,22 +22,16 @@ export default class Card {
       .addEventListener("click", () => {
         this.handleDeleteCard(this);
       });
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handleImagePreview(this._name, this._link);
-      });
-    this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon(this);
-      });
+    this._cardImageElement.addEventListener("click", () => {
+      this._handleImagePreview(this._name, this._link);
+    });
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeIcon(this);
+    });
   }
 
   _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    this._likeButton.classList.toggle("card__like-button_active");
   }
 
   _renderLikes() {

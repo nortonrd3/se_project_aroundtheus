@@ -55,7 +55,7 @@ function handleAvatarSubmit(link) {
       userInfo.updateAvatar(res.avatar);
       editAvatarPopup.close();
       avatarFormElement.reset();
-      avatarFormValidator._disableButton();
+      avatarFormValidator.disableButton();
     })
     .catch((err) => {
       console.error("Error updating avatar", err);
@@ -79,7 +79,7 @@ function handleAddCardSubmit(data) {
       renderCard(cardData);
       newCardPopup.close();
       addCardForm.reset();
-      addCardFormValidator._disableButton();
+      addCardFormValidator.disableButton();
     })
     .catch((error) => {
       console.error("Error while adding card", error);

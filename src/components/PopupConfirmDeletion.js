@@ -3,7 +3,6 @@ export default class PopupConfirmDeletion extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
-    this._popup = document.querySelector(popupSelector);
     this._deleteButton = this._popupElement.querySelector(
       ".card__delete-button"
     );
