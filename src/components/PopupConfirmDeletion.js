@@ -4,7 +4,7 @@ export default class PopupConfirmDeletion extends Popup {
     super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
     this._deleteButton = this._popupElement.querySelector(
-      ".card__delete-button"
+      ".modal__button_remove"
     );
     this._isSubmitted = false;
     this._cardId = null;
@@ -27,7 +27,7 @@ export default class PopupConfirmDeletion extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupElement.addEventListener("click", (evt) => {
+    this._deleteButton.addEventListener("click", (evt) => {
       evt.preventDefault();
       this._isSubmitted = true;
       this._handleFormSubmit(this._card, this._cardId);
