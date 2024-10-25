@@ -21,6 +21,31 @@
   margin-right: 24px;
   width: 120px;
   border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
+
+.profile__container-avatar {
+  position: relative;
+}
+
+.profile__avatar-button {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: calc(35%);
+  left: calc(35%);
+  z-index: 3;
+}
+
+.profile__container-avatar:hover .profile__avatar-button {
+  opacity: 1;
+}
+
+.profile__container-avatar:hover .profile__image {
+  opacity: 0.5;
 }
 
 .profile__info {
