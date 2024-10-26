@@ -9,11 +9,11 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import "./index.css";
 
+// Selectors
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 const changeAvitarModal = document.querySelector("#edit-avatar-modal");
-
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -24,6 +24,7 @@ const addNewCardButton = document.querySelector(".profile__add-button");
 const editAvatarButton = document.querySelector(".profile__avatar-button");
 const avatarFormElement = changeAvitarModal.querySelector(".modal__form");
 
+// Functions
 function handleImageClick(name, link) {
   previewImagePopup.open(name, link);
 }
@@ -89,6 +90,8 @@ function handleAddCardSubmit(data) {
     });
 }
 
+
+// Event Listeners
 editAvatarButton.addEventListener("click", () => editAvatarPopup.open());
 
 profileEditButton.addEventListener("click", () => {
@@ -212,7 +215,7 @@ function handleDeleteCard(card) {
   });
 }
 
-// Instace of Section class
+// Instance of Section class
 
 // const section = new Section(
 //   { items: initialCards, renderer: renderCard },

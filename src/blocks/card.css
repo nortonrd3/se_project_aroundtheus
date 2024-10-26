@@ -4,6 +4,11 @@
   max-width: 282px;
   list-style: none;
   position: relative;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
 }
 
 .card__image {
