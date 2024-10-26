@@ -13,7 +13,7 @@ import "./index.css";
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-const changeAvitarModal = document.querySelector("#edit-avatar-modal");
+const changeAvatarModal = document.querySelector("#edit-avatar-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -22,7 +22,7 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector(".modal__form");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const editAvatarButton = document.querySelector(".profile__avatar-button");
-const avatarFormElement = changeAvitarModal.querySelector(".modal__form");
+const avatarFormElement = changeAvatarModal.querySelector(".modal__form");
 
 // Functions
 function handleImageClick(name, link) {
@@ -253,3 +253,5 @@ const confirmDeletionPopup = new PopupConfirmDeletion({
   handleFormSubmit: () => {},
 });
 confirmDeletionPopup.setEventListeners();
+
+
